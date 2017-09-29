@@ -1,0 +1,136 @@
+<div style="margin: 0 auto; width: 50%;">
+<h3><i>Register User</i></h3>
+<div *ngIf="!name; else forminfo">
+  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+  <div class="form-group">
+    <label class="center-block">Name:<br>
+      <input class="form-control" formControlName="name">
+    </label>
+  </div>
+  <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">{{ titleAlert }}</div><br>
+   
+  <div class="form-group" style="width: 300px;">
+    <label class="center-block">Enter Date:<br>
+      <input class="form-control date" formControlName="date" type="text" id="datepicker">
+    </label>
+  </div><br>
+
+  <div class="form-group" style="width: 250px; padding-bottom: 1rem;">
+    <input class="form-control amount" type="hidden" id="amount" formControlName="amount" readonly style="border:0; color:#55acee; font-weight:bold;" />
+    <div id="slider"></div>
+  </div><br>
+
+  <div class="form-group">
+    <label class="center-block">State:<br>
+      <select class="form-control chosen-select chosen-state" formControlName="state" style="width: 172px;height: 22px;">
+          <option *ngFor="let state of states" [value]="state">{{state}}</option>
+      </select>
+    </label>
+  </div><br>
+  
+  <div class="form-group">
+    <label class="center-block">Fav. Fruit<br>
+      <bc-selectbox [selectData]="selectData" [selElmClass]="fruitBox"></bc-selectbox>
+    </label>
+  </div><br>
+
+  <div class="form-group">
+    <label class="center-block">Fav. Bird<br>
+      <bc-selectbox [selectData]="selectBirdData" [selElmClass]="selectBird"></bc-selectbox>
+    </label>
+  </div><br>
+
+  <div class="form-group">
+    <label>Description<br>
+      <textarea formControlName="description" style="width: 172px;"></textarea>
+    </label>
+    <div class="alert" *ngIf="!rForm.controls['description'].valid && rForm.controls['description'].touched">You must specify a description that's between 30 and 500 characters.</div>
+    <label for="validate">Minimum of 3 Characters</label>
+  </div><br>
+  
+  <div>
+    <a class="btn btn-default" (click)=showConfirm()>Popup</a>
+  </div><br>  
+  <div>
+    <span tooltip ngToolTipClass="newtooltip" content="You can have any html or plain text content here">Tooltip</span>
+  </div><br>  
+
+  <div class="form-group radio">
+    <h4>Super power:</h4>
+    <label class="center-block"><input type="radio" formControlName="power" value="flight">Flight</label>
+    <label class="center-block"><input type="radio" formControlName="power" value="x-ray vision">X-ray vision</label>
+    <label class="center-block"><input type="radio" formControlName="power" value="strength">Strength</label>
+  </div><br>
+  
+  <div style="margin-bottom: 1em; width: 250px;">
+    <select data-placeholder="Choose a Language" class="form-control chosen-select chosen-lang" formControlName="language">
+      <option value="">Please select a language</option>
+      <option *ngFor="let lang of langs"
+              [value]="lang"> {{ lang }} 
+      </option>
+    </select>
+  </div><br>
+
+  <div style="margin-bottom: 1em; width: 250px;" class="country">
+    <select data-placeholder="Choose a Country" formControlName="country" class="form-control chosen-select chosen-country" tabindex="2">
+     <option value="">Please select a language</option>
+      <option *ngFor="let country of countries"
+              [value]="country"> {{country}} 
+      </option>
+    </select>
+  </div><br>
+
+  <div class="checkbox">
+    <label class="center-block">
+      <input type="checkbox" formControlName="sidekick">I have a sidekick.
+    </label>
+  </div><br>
+
+  <div style="margin-bottom: 1em">
+    <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
+    <button type="reset"
+            [disabled]="rForm.pristine" class="btn btn-danger">Revert</button>
+    <!--<button type="submit"
+            [disabled]="rForm.pristine" class="btn btn-success">Save</button> &nbsp;
+    <button type="reset"
+            [disabled]="rForm.pristine" class="btn btn-danger">Revert</button>-->
+  </div>
+</form>
+<p>Form value: {{ rForm.value | json }}</p>
+</div>
+<ng-template #forminfo>
+  <div class="form-container">
+    <div class="row columns">
+        <p>{{ name }}</p>
+        <p>{{ description }}</p>
+        <p>{{ states }}</p>
+        <p>{{ power }}</p>
+        <p>{{ sidekick }}</p>
+        <p>{{ language }}</p>
+        <p>{{ country }}</p>
+        <p>{{ date }}</p>
+        <p>{{ amount }}</p>
+        <p>{{ fruits }}</p>
+        <p>{{ birds }}</p>
+    </div>
+  </div>
+</ng-template>
+</div>
+<br>
+<div style="width: 60%; margin: 0 auto;">
+  <div class="accordion closed" style="width: 100%; float: left; text-align: center; background: #666;">
+    <a (click)="myAccordion($event)">Accordion 1</a>
+  </div>
+  <div class="acc-content slide-up" style="width: 100%; float: left; ">
+    Accordion content
+    <br><br><br><br><br><br><br><br><br>
+  </div>
+  <div class="accordion closed" style="width: 100%; float: left; text-align: center; background: #666;">
+    <a (click)="myAccordion($event)">Accordion 2</a>
+  </div>
+  <div class="acc-content slide-up" style="width: 100%; float: left;">
+    Accordion content
+    <br><br><br><br><br><br><br><br><br>
+  </div>
+</div>
+  

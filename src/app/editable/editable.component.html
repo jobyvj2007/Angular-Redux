@@ -1,0 +1,15 @@
+  <div>
+    <inline-editor type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event)" [options]="editableSelectOptions"
+    value="valor"></inline-editor>
+  </div>        
+  <br>
+  <span *bcMyDirective>I am Joby Joseph</span>
+  <br>
+  <ng-template bcMyDirective>
+    <b>I am from Kochi</b>
+  </ng-template>
+  <br><br>
+  <!--<child-profile (click)="update()"></child-profile>-->
+  <child-profile #myChild (click)="update()"></child-profile>
+  <br><br>
+  <bc-selectbox></bc-selectbox>
